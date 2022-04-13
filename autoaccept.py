@@ -16,7 +16,7 @@ CONFIG = {
     "push_wait_time":   2,
     
     # Start scanning for the accept button after this many seconds
-    "initial_wait_time": 2,
+    "initial_wait_time": 5,
 
     # Stop scanning if we couldn't find the button after a large number of tries
     "limit_scan_times": 1000
