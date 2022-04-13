@@ -58,24 +58,23 @@ def scanAcceptButton(wait) -> pyautogui.Point:
     """Loops until the accept button was found,
        or quits if iteration limit exceeded."""
     iteration = 0
-    while True:
+    while iteration < CONFIG["limit_scan_times"]:
         #print("{}/{}".format(iteration, CONFIG["limit_scan_times"]))
-        if iteration < CONFIG["limit_scan_times"]:
-            try:
-                print("[{}] Looking for accept button...".format(iteration))
-                button = pyautogui.locateCenterOnScreen(CONFIG["screenshot_path"])
-                assert button is not None
-            except Exception:
-                print(" Didn't find accept button on screen. Scanning again in {} seconds.".format(wait))
-                sleep(wait)
-            else:
-                print("=> Found accept button: {}".format(button))
-                return button
-            
-            iteration += 1
+        try:
+            print("[{}] Looking for accept button...".format(iteration))
+            button = pyautogui.locateCenterOnScreen(CONFIG["screenshot_path"])
+            assert button is not None
+        except Exception:
+            print(" Didn't find accept button on screen. Scanning again in {} seconds.".format(wait))
+            sleep(wait)
         else:
-            print("[!] Timed out after {} tries. Exiting.".format(iteration))
-            exit()
+            print("=> Found accept button: {}".format(button))
+            return button
+
+        iteration += 1
+
+    print("[!] Timed out after {} tries. Exiting.".format(iteration))
+    exit()
 
 
 def main():
