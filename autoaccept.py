@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+
 #### Configuration ####
 
 
@@ -54,7 +55,8 @@ def pushButtonMultipleTimes(button, times, wait):
 
 
 def scanAcceptButton(wait) -> pyautogui.Point:
-    """Loops until the accept button was found."""
+    """Loops until the accept button was found,
+       or quits if iteration limit exceeded."""
     iteration = 0
     while True:
         #print("{}/{}".format(iteration, CONFIG["limit_scan_times"]))
