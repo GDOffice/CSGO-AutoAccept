@@ -54,14 +54,15 @@ def pushButtonMultipleTimes(button, times, wait):
             print("[{}/{}] Pushing accept button.".format(n+1, times))
 
 
-def scanAcceptButton(wait) -> pyautogui.Point:
+def locateButton(wait) -> pyautogui.Point:
     """Loops until the accept button was found,
        or quits if iteration limit exceeded."""
     iteration = 0
-    while iteration < CONFIG["limit_scan_times"]:
-        #print("{}/{}".format(iteration, CONFIG["limit_scan_times"]))
+    #while iteration < CONFIG["limit_scan_times"]:
+    for i in range(CONFIG["limit_scan_times"]):
+        #print("{}/{}".format(i, CONFIG["limit_scan_times"]))
         try:
-            print("[{}] Looking for accept button...".format(iteration))
+            print("[{}] Looking for accept button...".format(i))
             button = pyautogui.locateCenterOnScreen(CONFIG["screenshot_path"])
             assert button is not None
         except Exception:
@@ -71,9 +72,7 @@ def scanAcceptButton(wait) -> pyautogui.Point:
             print("=> Found accept button: {}".format(button))
             return button
 
-        iteration += 1
-
-    print("[!] Timed out after {} tries. Exiting.".format(iteration))
+    print("[!] Timed out after {} tries. Exiting.".format(i))
     exit()
 
 
@@ -83,8 +82,10 @@ def main():
         print("Screenshot file exists:", CONFIG["screenshot_path"])
         print("Starting in {} seconds. Press Ctrl+C to stop.".format(CONFIG["initial_wait_time"]))
         sleep(CONFIG["initial_wait_time"])
-        pushButtonMultipleTimes(scanAcceptButton(CONFIG["scan_wait_time"]),
-                                CONFIG["push_times"], CONFIG["push_wait_time"])
+        pushButtonMultipleTimes(locateButton(CONFIG["scan_wait_time"]),
+                                CONFIG["push_times"],
+                                CONFIG["push_wait_time"]
+        )
         print("[{}] Exiting.".format(ctime()))
     else:
         print("[!] Couldn't load screenshot file. Exiting.")
