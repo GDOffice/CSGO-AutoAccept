@@ -10,13 +10,13 @@ CONFIG = {
     "screenshot_path":  "button_screenshots/1920x1200.png",
     
     # How many seconds to wait between each scan
-    "scan_wait_time":   2,
+    "scan_wait_time":   1,
     
     # How many times to push the accept button after it has been detected
-    "push_times":       3,
+    "push_times":       2,
     
     # Seconds to wait between pushing the accept button
-    "push_wait_time":   2,
+    "push_wait_time":   1,
     
     # Start scanning for the accept button after this many seconds
     "initial_wait_time": 5,
