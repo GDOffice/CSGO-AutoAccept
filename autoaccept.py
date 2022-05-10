@@ -63,7 +63,8 @@ def locateButton(wait) -> pyautogui.Point:
         #print("{}/{}".format(i, CONFIG["limit_scan_times"]))
         try:
             print("[{}] Looking for accept button...".format(i))
-            button = pyautogui.locateCenterOnScreen(CONFIG["screenshot_path"])
+            button = pyautogui.locateCenterOnScreen(CONFIG["screenshot_path"],
+                                                    grayscale = True)
             assert button is not None
         except Exception:
             print(" Didn't find accept button on screen. Scanning again in {} seconds.".format(wait))
